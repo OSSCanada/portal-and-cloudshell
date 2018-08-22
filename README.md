@@ -13,12 +13,12 @@ This is a walkthrough of the different areas of the Azure Portal along with what
     * Navigation Bar
     * Portal Settings
         * Search
-        * Bell (Notifications)
         * Cloud Shell
-        * Gear (UI Settings)
-        * Send Feedback
-        * Ask for Help
         * Directory and Subscription Filter
+        * Bell (Notifications)
+        * Gear (UI Settings)
+        * Ask for Help
+        * Send Feedback        
     * Identity & Switch Directory
     * Dashboard
 
@@ -26,17 +26,18 @@ This is a walkthrough of the different areas of the Azure Portal along with what
 
     * Default with Azure Status
     * Creating Custom Dashboard
-    * Show Existing Custom Dashboard
+    * Show Existing Custom Dashboard & Sharing
 
 3. Navigation Bar
 
-    * Resource Groups & Resources - Create RG
+    * View into Resources
     * All Services - Pin AKS
+    * Resource Groups & Resources - Create RG
 
 4. Create a Resource, Notification, Security & Support
 
     * Azure Market Place (AMP)
-    * Azure Container Registry - Premium SKU
+    * Azure Container Registry - Standard SKU
     * Blades
     * Access Control Blade - Security
     * New Support Request Blade - Ask for Help
