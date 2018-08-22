@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Clone Repository
+cd ~
+git clone https://github.com/OSSCanada/portal-and-cloudshell.git
+cd portal-and-cloudshell
 # Create Resource Group.
-cd ~/repos/stuff
 RG="ossvc20180913-rg"
 LOC="eastus"
 NAME="ossvc20180913"
@@ -14,7 +17,7 @@ az acr create -g $RG -n ${ACR_NAME} --sku Premium --admin-enabled
 az acr list -o table
 
 # ACR Build Demo
-cd ~/repos
+cd ~
 git clone https://github.com/Azure-Samples/acr-build-helloworld-node.git
 cd acr-build-helloworld-node
 az acr credential show -n ${ACR_NAME}
@@ -58,6 +61,7 @@ az container create \
 # Using Terraform to Deploy Containers
 # Use VS Code to look at main.tf
 # Use Terraform CLI Integration to Execute Hashicorp Script (main.tf)
+code .
 terraform init
 terraform plan
 terraform apply
@@ -72,7 +76,7 @@ az container show -g $RG -n aci-helloworld -o tsv --query "ipAddress.fqdn"
 # ACR Premium SKU Already Created
 # Go into Portal & Enable Geo-Replication to West US
 # Log into ACR
-cd ~/repos
+cd ~
 git clone https://github.com/Azure-Samples/acr-helloworld.git
 cd acr-helloworld
 # Update Dockerfile with ACR Registry Name
@@ -84,6 +88,7 @@ az acr build --registry ${ACR_NAME} -f ./AcrHelloworld/Dockerfile --image acr-he
 az acr repository list -n ${ACR_NAME}
 az acr repository show-manifests -n ${ACR_NAME} --repository acr-helloworld
 az acr repository show-tags -n ${ACR_NAME} --repository acr-helloworld
+# Deploy to Web App for Containers Using Portal
 
-# Delete RG
+# Delete RG (Cleanup)
 az group delete --name $RG --no-wait -y
