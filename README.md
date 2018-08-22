@@ -145,11 +145,11 @@ This is a walkthrough of the different areas of the Azure Portal along with what
     terraform plan
     terraform apply
     # Validate Deployment
-    az group list -o table | grep $RG
+    az group list -o table | grep aci-helloworld
     az container list -o table
-    az container show -g $RG -n aci-helloworld
-    curl $(az container show -g $RG -n aci-helloworld -o tsv --query "ipAddress.fqdn")
-    az container show -g $RG -n aci-helloworld -o tsv --query "ipAddress.fqdn"
+    az container show -g aci-helloworld -n aci-helloworld
+    curl $(az container show -g aci-helloworld -n aci-helloworld -o tsv --query "ipAddress.fqdn")
+    az container show -g aci-helloworld -n aci-helloworld -o tsv --query "ipAddress.fqdn"
     ```
 
 4. Deploy Multi-Region Solution using Web App for Containers
