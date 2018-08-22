@@ -12,7 +12,7 @@ ACR_NAME="${NAME}acr"
 AKV_NAME="${NAME}vault"
 az group create --name $RG --location $LOC
 # Create Registry
-az acr create -g $RG -n ${ACR_NAME} --sku Premium --admin-enabled
+az acr create -g $RG -n ${ACR_NAME} --sku Premium --admin-enabled --location $LOC
 # List the new Registry
 az acr list -o table
 
@@ -28,7 +28,7 @@ az acr repository list -n ${ACR_NAME}
 az acr repository show-manifests -n ${ACR_NAME} --repository helloacrbuild
 az acr repository show-tags -n ${ACR_NAME} --repository helloacrbuild
 # Create Key Vault and Deploy to ACI
-az keyvault create -g $RG -n ${AKV_NAME}
+az keyvault create -g $RG -n ${AKV_NAME} --location $LOC
 # Create service principal, store its password in AKV (the registry *password*)
 az keyvault secret set \
   --vault-name ${AKV_NAME} \
@@ -54,8 +54,8 @@ az container create \
     --registry-password $(az keyvault secret show --vault-name $AKV_NAME --name ${ACR_NAME}-pull-pwd --query value -o tsv) \
     --dns-name-label acr-build-${ACR_NAME} \
     --query "{FQDN:ipAddress.fqdn}" \
+    --location $LOC \
     --output table
-  az container attach --resource-group $RG --name acr-build
 # Navigate to fqdn to Validate Deployment
 
 # Using Terraform to Deploy Containers
